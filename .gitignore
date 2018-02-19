@@ -1,0 +1,14 @@
+.gradle
+/*/build/
+/*/bin/
+/*/war/
+
+### STS/Eclipse ###
+/*/.apt_generated/
+/*/.classpath
+/*/.factorypath
+.project
+/*/.project
+.settings/
+/*/.settings/
+/*/.springBeans

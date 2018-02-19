@@ -1,0 +1,3 @@
+rootProject.name = 'gwt-spring-boot-samples'
+
+include 'gwt-spring-boot-sample-base'
