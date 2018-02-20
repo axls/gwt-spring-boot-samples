@@ -3,7 +3,6 @@ subprojects{
         ext {
             springBootVersion = '2.0.0.RC1'
             gwtPluginVersion = '1.0.3'
-            gwtVersion = '2.8.2'
         }
         repositories {
             mavenCentral()
@@ -11,7 +10,11 @@ subprojects{
             maven { url "https://repo.spring.io/milestone" }
         }
     }
-
+    ext {
+        gwtVersion = '2.8.2'
+        restygwtVersion = '2.2.3'
+    }
+    
     group = 'gwt.springboot'
     version = '0.0.1-SNAPSHOT'
 
