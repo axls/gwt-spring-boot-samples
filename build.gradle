@@ -2,7 +2,7 @@ subprojects{
     buildscript {
         ext {
             springBootVersion = '2.0.0.RC2'
-            gwtPluginVersion = '1.0.3'
+            gwtPluginVersion =  '1.0.3'
         }
         repositories {
             mavenCentral()
@@ -11,8 +11,9 @@ subprojects{
         }
     }
     ext {
-        gwtVersion = '2.8.2'
-        restygwtVersion = '2.2.3'
+        gwtVersion =       '2.8.2'
+        restygwtVersion =  '2.2.3'
+        elementalVersion = '1.0.0-RC1'
     }
     
     group = 'gwt.springboot'

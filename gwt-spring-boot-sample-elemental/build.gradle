@@ -1,0 +1,45 @@
+buildscript {
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "org.wisepersist:gwt-gradle-plugin:${gwtPluginVersion}"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
+apply plugin: 'gwt'
+
+sourceCompatibility = 1.8
+
+configurations { providedRuntime }
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.springframework.boot:spring-boot-starter-web')
+
+    gwt "com.google.gwt:gwt-user:$gwtVersion"
+    gwt "com.google.elemental2:elemental2-core:$elementalVersion"
+    gwt "com.google.elemental2:elemental2-dom:$elementalVersion"
+
+    gwtSdk ("com.google.gwt:gwt-dev:$gwtVersion") { exclude module: 'apache-jsp' }
+
+    runtime "com.google.gwt:gwt-servlet:$gwtVersion"
+
+    providedRuntime('org.springframework.boot:spring-boot-starter-jetty')
+}
+
+gwt {
+    modules 'gwt.springboot.sample.Application'
+
+    maxHeapSize = '2g'
+    eclipse{ addGwtContainer = false }
+    superDev{ launcherDir = file('build/gwt/launcherDir') }
+}
+
+bootWar {
+    dependsOn compileGwt
+    into('static') { from compileGwt.outputs }
+}

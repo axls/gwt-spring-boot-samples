@@ -2,3 +2,4 @@ rootProject.name = 'gwt-spring-boot-samples'
 
 include 'gwt-spring-boot-sample-base'
 include 'gwt-spring-boot-sample-restygwt-jersey'
+include 'gwt-spring-boot-sample-elemental'
