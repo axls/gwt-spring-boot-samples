@@ -32,6 +32,7 @@ dependencies {
 }
 
 gwt {
+    gwtVersion = '' // GWT SDK dependencies will be manually managed 
     modules 'gwt.springboot.sample.Application'
 
     maxHeapSize = '2g'
