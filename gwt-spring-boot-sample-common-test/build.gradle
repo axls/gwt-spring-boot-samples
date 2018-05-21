@@ -1,0 +1,17 @@
+plugins {
+    id "io.spring.dependency-management" version "1.0.5.RELEASE"
+}
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+dependencyManagement {
+     imports {
+          mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+     }
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-test'
+    compile 'org.seleniumhq.selenium:selenium-java'
+}

@@ -12,3 +12,14 @@ spring.profiles: dev
 spring:
   thymeleaf:
     cache: false
+
+---
+spring.profiles: integTest
+spring:
+  resources:
+    static-locations:
+    - classpath:/META-INF/resources/
+    - classpath:/resources/
+    - classpath:/static/
+    - classpath:/public/
+    - file:build/gwt/out #for integration tests
