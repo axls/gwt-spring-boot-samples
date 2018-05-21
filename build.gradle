@@ -11,7 +11,7 @@ subprojects{
         }
     }
     ext {
-        gwtVersion =       '2.8.2'
+        gwtVersion =       'HEAD-SNAPSHOT'
         restygwtVersion =  '2.2.3'
         elementalVersion = '1.0.0-RC1'
     }
@@ -23,5 +23,6 @@ subprojects{
         mavenCentral()
         maven { url "https://repo.spring.io/snapshot" }
         maven { url "https://repo.spring.io/milestone" }
+        maven { url "https://oss.sonatype.org/content/repositories/google-snapshots" }
     }
 }
