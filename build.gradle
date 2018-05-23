@@ -16,9 +16,13 @@ subprojects{
         elementalVersion = '1.0.0-RC1'
     }
     
+    apply plugin: 'java'
+    
     group = 'gwt.springboot'
     version = '0.0.1-SNAPSHOT'
 
+	sourceCompatibility = 10
+	
     repositories {
         mavenCentral()
         maven { url "https://repo.spring.io/snapshot" }
