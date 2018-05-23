@@ -1,11 +1,10 @@
 package gwt.springboot.sample.sse.client;
 
-import static elemental2.dom.DomGlobal.document;
+import static elemental2.dom.DomGlobal.*;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 
-import elemental2.dom.Element;
 import elemental2.dom.EventSource;
 import jsinterop.base.Js;
 
@@ -13,10 +12,10 @@ public class ApplicationEntryPoint implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-        Element status = document.getElementById("status");
-        Element lastEvent = document.getElementById("lastEvent");
+        var status = document.getElementById("status");
+        var lastEvent = document.getElementById("lastEvent");
 
-        EventSource eventSource = new EventSource(GWT.getHostPageBaseURL() + "events");
+        var eventSource = new EventSource(GWT.getHostPageBaseURL() + "events");
         eventSource.onopen = e -> {
             status.innerHTML = "Connected";
             return null;

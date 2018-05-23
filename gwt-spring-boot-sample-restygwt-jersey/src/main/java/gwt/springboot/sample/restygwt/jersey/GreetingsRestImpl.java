@@ -10,7 +10,7 @@ class GreetingsRestImpl implements GreetingsRest {
 
     @Override
     public Greeting getGreeting(String name) {
-        Greeting greeting = new Greeting();
+        var greeting = new Greeting();
         greeting.setMessage("Hello, " + name + "!");
         return greeting;
     }

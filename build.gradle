@@ -30,3 +30,11 @@ subprojects{
         maven { url "https://oss.sonatype.org/content/repositories/google-snapshots" }
     }
 }
+
+configure(subprojects - [project(":gwt-spring-boot-sample-common-test")]) { subproject ->
+	afterEvaluate {
+		gwt {
+		    sourceLevel = '10'
+		}
+	}
+}

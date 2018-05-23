@@ -3,7 +3,6 @@ package gwt.springboot.sample.sse;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.springframework.boot.SpringApplication;
@@ -23,7 +22,7 @@ public class Application {
 
     @GetMapping("events")
     SseEmitter events() {
-        SseEmitter emitter = new SseEmitter();
+        var emitter = new SseEmitter();
         emitter.onCompletion(() -> emitters.remove(emitter));
         emitters.add(emitter);
         return emitter;
@@ -31,9 +30,9 @@ public class Application {
 
     @Scheduled(fixedRate = 1000)
     void onEvent() {
-        Date now = new Date();
-        Set<SseEmitter> toRemove = new HashSet<>();
-        for (SseEmitter emitter : emitters) {
+        var now = new Date();
+        var toRemove = new HashSet<>();
+        for (var emitter : emitters) {
             try {
                 emitter.send(now);
             } catch (IOException e) {

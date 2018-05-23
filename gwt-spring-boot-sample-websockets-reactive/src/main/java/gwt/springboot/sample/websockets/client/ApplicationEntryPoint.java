@@ -1,7 +1,6 @@
 package gwt.springboot.sample.websockets.client;
 
-import static elemental2.dom.DomGlobal.document;
-import static elemental2.dom.DomGlobal.location;
+import static elemental2.dom.DomGlobal.*;
 
 import com.google.gwt.core.client.EntryPoint;
 
@@ -18,7 +17,7 @@ public class ApplicationEntryPoint implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-        Element sendButton = document.getElementById("sendButton");
+        var sendButton = document.getElementById("sendButton");
         sendButton.setAttribute("disabled", true);
         sendButton.onclick = e -> {
             sendMessage();
@@ -37,7 +36,7 @@ public class ApplicationEntryPoint implements EntryPoint {
     }
 
     private Object onMessageRecieved(MessageEvent<Object> e) {
-        Element li = document.createElement("li");
+        var li = document.createElement("li");
         li.innerHTML = String.valueOf(e.data);
         messages.appendChild(li);
 

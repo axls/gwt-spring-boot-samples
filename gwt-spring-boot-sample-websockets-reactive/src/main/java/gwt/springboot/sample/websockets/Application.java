@@ -1,7 +1,6 @@
 package gwt.springboot.sample.websockets;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -33,14 +32,14 @@ public class Application {
 
     @Bean
     HandlerMapping webSocketMapping(UnicastProcessor<String> publisher, Flux<String> messages) {
-        Map<String, WebSocketHandler> handlers = new HashMap<>();
+        var handlers = new HashMap<String, WebSocketHandler>();
         handlers.put("/messages", session -> {
             //get message from the session and send them to the publisher, so, the other clients will be notified  
             session.receive().map(WebSocketMessage::getPayloadAsText).subscribe(publisher::onNext);
             return session.send(messages.map(session::textMessage));
         });
 
-        SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
+        var mapping = new SimpleUrlHandlerMapping();
         mapping.setUrlMap(handlers);
         mapping.setOrder(-1);
         return mapping;

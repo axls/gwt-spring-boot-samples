@@ -22,7 +22,7 @@ public class Application implements WebSocketConfigurer {
 
         @Override
         protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-            for (WebSocketSession s : sessions) {
+            for (var s : sessions) {
                 s.sendMessage(message);
             }
         }
