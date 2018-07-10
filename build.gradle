@@ -33,6 +33,7 @@ subprojects{
 
 configure(subprojects - [project(":gwt-spring-boot-sample-common-test")]) { subproject ->
 	afterEvaluate {
+		it.apply from: rootProject.file('gradle/it.gradle')
 		gwt {
 		    sourceLevel = '10'
 		}

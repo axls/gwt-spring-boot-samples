@@ -10,7 +10,6 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'war'
 apply plugin: 'gwt'
-apply from: rootProject.file('gradle/it.gradle')
 
 configurations { providedRuntime }
 
