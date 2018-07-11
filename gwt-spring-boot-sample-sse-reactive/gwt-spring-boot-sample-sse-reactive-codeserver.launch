@@ -10,7 +10,7 @@
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="com.gwtplugins.gwt.eclipse.core.moduleClasspathProvider"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.google.gwt.dev.codeserver.CodeServer"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-logLevel INFO -port 9876 -launcherDir build/gwt/launcherDir -XmethodNameDisplayMode ONLY_METHOD_NAME gwt.springboot.sample.sse.Application"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-logLevel INFO -port 9876 -launcherDir build/gwt/launcherDir -XmethodNameDisplayMode ONLY_METHOD_NAME -sourceLevel 10 -style PRETTY gwt.springboot.sample.sse.Application"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="gwt-spring-boot-sample-sse-reactive"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx2g"/>
 <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:gwt-spring-boot-sample-sse-reactive}"/>
