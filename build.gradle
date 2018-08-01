@@ -1,4 +1,6 @@
-subprojects{
+configure(subprojects - [
+  project(":gwt-spring-boot-samples-build-src"),
+  ]) { subproject ->
   buildscript {
     ext {
       springBootVersion = '2.0.3.RELEASE'
@@ -32,9 +34,15 @@ subprojects{
   }
 }
 
-configure(subprojects - [project(":gwt-spring-boot-sample-common-test")]) { subproject ->
+configure(subprojects - [
+  project(":gwt-spring-boot-sample-common-test"),
+  project(":gwt-spring-boot-samples-build-src"),
+  ]) { subproject ->
+  
   afterEvaluate {
     it.apply from: rootProject.file('gradle/it.gradle')
+    it.apply plugin: IdePlugin
+    
     gwt {
       sourceLevel = '10'
     }

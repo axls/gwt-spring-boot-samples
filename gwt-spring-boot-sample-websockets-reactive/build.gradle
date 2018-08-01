@@ -41,7 +41,19 @@ gwt {
     superDev{ launcherDir = file('build/gwt/launcherDir') }
 }
 
+springBoot {
+    mainClassName = 'gwt.springboot.sample.websockets.Application'
+}
+
 bootWar {
     dependsOn compileGwt
     into('static') { from compileGwt.outputs }
+}
+
+afterEvaluate{
+    ide{
+        springBoot{
+            profiles = 'dev'
+        }
+    }
 }

@@ -1,0 +1,13 @@
+apply plugin: "groovy"
+
+sourceCompatibility = 10
+targetCompatibility = 10
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+}

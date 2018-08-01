@@ -44,6 +44,10 @@ gwt {
     superDev{ launcherDir = file('build/gwt/launcherDir') }
 }
 
+springBoot {
+    mainClassName = 'gwt.springboot.sample.restygwt.jersey.Application'
+}
+
 bootWar {
     dependsOn compileGwt
     into('static') { from compileGwt.outputs }
