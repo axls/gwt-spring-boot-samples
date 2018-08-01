@@ -9,6 +9,7 @@ dependencyManagement {
 }
 
 dependencies {
+    compile 'org.ow2.asm:asm:6.2'
     compile 'org.springframework.boot:spring-boot-starter-test'
     compile 'org.seleniumhq.selenium:selenium-java'
 }
