@@ -8,6 +8,7 @@ include 'gwt-spring-boot-sample-sse'
 include 'gwt-spring-boot-sample-sse-reactive'
 include 'gwt-spring-boot-sample-websockets'
 include 'gwt-spring-boot-sample-websockets-reactive'
+include 'gwt-spring-boot-sample-polymer'
 
 include "buildSrc"
 rootProject.children.find{ it.name == "buildSrc" }.name = "gwt-spring-boot-samples-build-src"
