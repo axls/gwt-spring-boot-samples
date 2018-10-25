@@ -1,0 +1,93 @@
+buildscript {
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "org.wisepersist:gwt-gradle-plugin:${gwtPluginVersion}"
+    }
+}
+plugins {
+  id "net.ltgt.apt" version "0.18"
+  id "net.ltgt.apt-eclipse" version "0.18"
+}
+
+apply plugin: 'eclipse-wtp'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
+apply plugin: 'gwt'
+
+ext.vueGwtVersion = '1.0-beta-9';
+
+configurations { providedRuntime }
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.springframework.boot:spring-boot-starter-web')
+
+    gwt "com.google.gwt:gwt-user:$gwtVersion"
+    gwt "com.google.jsinterop:jsinterop-annotations:$gwtVersion"
+    gwt "com.google.elemental2:elemental2-core:$elementalVersion"
+    gwt "com.google.elemental2:elemental2-dom:$elementalVersion"
+    gwt "com.axellience:vue-gwt:$vueGwtVersion"
+    
+
+    gwtSdk ("com.google.gwt:gwt-dev:$gwtVersion") { exclude module: 'apache-jsp' }
+    
+    annotationProcessor "javax.annotation:javax.annotation-api:1.2"
+    annotationProcessor "com.axellience:vue-gwt-processors:$vueGwtVersion"
+
+    runtime "com.google.gwt:gwt-servlet:$gwtVersion"
+
+    providedRuntime('org.springframework.boot:spring-boot-starter-jetty')
+    
+    testCompile project(':gwt-spring-boot-sample-common-test')
+}
+
+//server resources from /src/main/java
+sourceSets {
+  main {
+    resources{
+      srcDirs 'src/main/java'
+    }
+    output.resourcesDir = relativePath(sourceSets.main.java.outputDir)
+  }
+}
+//necessary since annotation processor uses templates from CLASS_PATH scope
+compileJava.dependsOn processResources
+
+// override output folder for .apt_generated in eclipse
+eclipse{
+    classpath{
+        file{
+            whenMerged{ classpath ->
+                def genSrcDir = relativePath(eclipse.jdt.apt.genSrcDir)
+                def aptGeneratedSourceFolder = 
+                    new org.gradle.plugins.ide.eclipse.model.SourceFolder(genSrcDir, 'bin/main');
+                aptGeneratedSourceFolder.entryAttributes.putAt('optional', true); 
+                classpath.entries += aptGeneratedSourceFolder;
+            }
+        }
+    }
+}
+
+gwt {
+    gwtVersion = '' // GWT SDK dependencies will be manually managed 
+    modules 'gwt.springboot.sample.vuegwt.Application'
+
+    maxHeapSize = '2g'
+    eclipse{ addGwtContainer = false }
+    superDev{ launcherDir = file('build/gwt/launcherDir') }
+    jsInteropExports{
+      shouldGenerate = true
+    }
+}
+
+gwt.src += files(sourceSets.main.output.generatedSourcesDir);
+
+springBoot {
+    mainClassName = 'gwt.springboot.sample.vuegwt.Application'
+}
+
+bootWar {
+    dependsOn compileGwt
+    into('static') { from compileGwt.outputs }
+}
