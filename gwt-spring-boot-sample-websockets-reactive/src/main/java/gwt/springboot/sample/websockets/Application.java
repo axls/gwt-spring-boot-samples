@@ -11,9 +11,11 @@ import org.springframework.web.reactive.HandlerMapping;
 import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping;
 import org.springframework.web.reactive.socket.WebSocketHandler;
 import org.springframework.web.reactive.socket.WebSocketMessage;
+import org.springframework.web.reactive.socket.WebSocketSession;
 import org.springframework.web.reactive.socket.server.support.WebSocketHandlerAdapter;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.core.publisher.UnicastProcessor;
 
 @SpringBootApplication
@@ -33,10 +35,13 @@ public class Application {
     @Bean
     HandlerMapping webSocketMapping(UnicastProcessor<String> publisher, Flux<String> messages) {
         var handlers = new HashMap<String, WebSocketHandler>();
-        handlers.put("/messages", session -> {
-            //get message from the session and send them to the publisher, so, the other clients will be notified  
-            session.receive().map(WebSocketMessage::getPayloadAsText).subscribe(publisher::onNext);
-            return session.send(messages.map(session::textMessage));
+        handlers.put("/messages", new WebSocketHandler() {
+          @Override
+          public Mono<Void> handle(WebSocketSession session) {
+              //get message from the session and send them to the publisher, so, the other clients will be notified  
+              session.receive().map(WebSocketMessage::getPayloadAsText).subscribe(publisher::onNext);
+              return session.send(messages.map(session::textMessage));
+          }
         });
 
         var mapping = new SimpleUrlHandlerMapping();

@@ -3,4 +3,4 @@ GWT and Spring Boot integration samples
 
 **IMPORTANT**
 
-Java 10 is required to build projects in this repository. 
+Java 11 is required to build projects in this repository. 
