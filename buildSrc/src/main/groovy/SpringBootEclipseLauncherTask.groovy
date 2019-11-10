@@ -12,7 +12,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class SpringBootEclipseLauncherTask extends DefaultTask {
     @OutputFile
-    final RegularFileProperty launcherFile = newOutputFile()
+    final RegularFileProperty launcherFile = project.objects.fileProperty()
     @Input
     final Property<String> mainClass = project.objects.property(String)
     @Input

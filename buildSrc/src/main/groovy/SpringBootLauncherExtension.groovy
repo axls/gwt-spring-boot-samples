@@ -8,7 +8,7 @@ class SpringBootLauncherExtension {
     final Property<String> profiles
     
     SpringBootLauncherExtension(Project project) {
-        launcherFile = project.layout.fileProperty()
+        launcherFile = project.objects.fileProperty()
         mainClass = project.objects.property(String)
         profiles = project.objects.property(String)
         

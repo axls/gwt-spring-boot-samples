@@ -7,7 +7,7 @@ class GwtLauncherExtension {
     final Property<String> modules
     
     GwtLauncherExtension(Project project) {
-        launcherFile = project.layout.fileProperty()
+        launcherFile = project.objects.fileProperty()
         modules = project.objects.property(String)
         
         launcherFile.set(project.file(project.name + '-codeserver.launch'))
